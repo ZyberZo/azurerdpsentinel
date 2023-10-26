@@ -70,6 +70,7 @@ Creating custom logs in the Log Analytic Workspace is the next step:
 
 5. Now click on logs and run this query:
 
+<pre>
 FAILED_RDP_WITH_GEO_CL 
 | extend username = extract(@"username:([^,]+)", 1, RawData),
          timestamp = extract(@"timestamp:([^,]+)", 1, RawData),
@@ -83,6 +84,9 @@ FAILED_RDP_WITH_GEO_CL
 | where destination != "samplehost"
 | where sourcehost != ""
 | summarize event_count=count() by timestamp, label, country, state, sourcehost, username, destination, longitude, latitude
+</pre>
+
+
 
 <img src="pictures/Azurecustomquery.png" alt="Image 2" width="600" style="display:inline-block; margin-right: 100px;">
 
@@ -113,4 +117,4 @@ Don't forget to delete all resources when you're finished to avoid consuming you
 
 ## In Conclusion
 
-A special thanks to @JoshMadakor for sharing this fascinating project, which has not only enhanced our understanding of Azure but also our experience with Microsoft Sentinel.
+A special thanks to @JoshMadakor for sharing this fascinating project, which has not only enhanced my understanding of Azure but also my experience with Microsoft Sentinel.
