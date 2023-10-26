@@ -1,5 +1,3 @@
-<h1>Microsoft Azure Sentinel RDP Map Monitoring</h1>
-<br>
 
 # Azure RDP Failed Login Map Monitoring
 
