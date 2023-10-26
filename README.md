@@ -3,7 +3,7 @@
 
 ## Project Introduction
 
-Welcome to a comprehensive guide on Azure RDP Failed Login Map Monitoring. In this project, our primary focus is working with Windows Event Logs using PowerShell, with a specific emphasis on monitoring failed RDP (Remote Desktop Protocol) login attempts.
+Welcome to a comprehensive guide on Azure RDP Failed Login Map Monitoring. In this project, my primary focus is working with Windows Event Logs using PowerShell, with a specific emphasis on monitoring failed RDP (Remote Desktop Protocol) login attempts.
 
 ## Creating Your Azure Account
 
