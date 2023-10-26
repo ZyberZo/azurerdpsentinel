@@ -36,7 +36,9 @@ To effectively gather and analyze data from your VM, you'll need a log analytic 
 
 ## Configuring the Vulnerable VM
 
-Return to the vulnerable VM and connect to it with the public IP address using RDP. Ensure the firewall is turned off for the Domain Profile, Private Profile, and Public Profile.
+Return to the vulnerable VM and connect to it with the public IP address using RDP. Please note that Remote Desktop is not available on Windows 11 Home; it's a feature exclusive to Windows 11 Pro. To access your Azure VM from a Windows 11 Home system, you can use virtualization software such as VirtualBox or VMware Workstation to set up a Windows 10 virtual machine and connect to your Azure VM through it.
+
+Ensure the firewall is turned off for the Domain Profile, Private Profile, and Public Profile.(Press start and write “wf.msc” to get to the firewall settings)
 
 <img src="pictures/Azure VM IP adress.png" alt="Image 2" width="800" style="display:inline-block; margin-right: 100px;">
 <img src="pictures/Azure vuln vm firewall.png" alt="Image 2" width="600" style="display:inline-block; margin-right: 100px;">
@@ -46,8 +48,9 @@ Return to the vulnerable VM and connect to it with the public IP address using R
 Let's delve into data ingestion using PowerShell:
 
 1. Sign up at ipgeolocation.io and obtain an API key.
-2. Open PowerShell ISE on your vulnerable VM and execute a provided PowerShell script, replacing the API key with the one you obtained.
-3. This script will notify you in the PowerShell command line of any attempted connections to your vulnerable VM.
+2. Copy the PowerShell script from Josh Madakor's repository (https://github.com/joshmadakor1/Sentinel-Lab/blob/main/Custom_Security_Log_Exporter.ps1)
+3. Open PowerShell ISE on your vulnerable VM and execute the provided PowerShell script, replacing the API key with the one you obtained.
+4. This script will notify you in the PowerShell command line of any attempted connections to your vulnerable VM.
 
 <img src="pictures/Azuregeoipio.png" alt="Image 2" width="600" style="display:inline-block; margin-right: 100px;">
 <img src="pictures/AzureAPI.png" alt="Image 2" width="600" style="display:inline-block; margin-right: 100px;">
@@ -63,7 +66,27 @@ Creating custom logs in the Log Analytic Workspace is the next step:
 
 <img src="pictures/AzureCustomMMA.png" alt="Image 2" width="600" style="display:inline-block; margin-right: 100px;">
 <img src="pictures/Azureccollectionpath.png" alt="Image 2" width="600" style="display:inline-block; margin-right: 100px;">
+
+
+5. Now click on logs and run this query:
+
+FAILED_RDP_WITH_GEO_CL 
+| extend username = extract(@"username:([^,]+)", 1, RawData),
+         timestamp = extract(@"timestamp:([^,]+)", 1, RawData),
+         latitude = extract(@"latitude:([^,]+)", 1, RawData),
+         longitude = extract(@"longitude:([^,]+)", 1, RawData),
+         sourcehost = extract(@"sourcehost:([^,]+)", 1, RawData),
+         state = extract(@"state:([^,]+)", 1, RawData),
+         label = extract(@"label:([^,]+)", 1, RawData),
+         destination = extract(@"destinationhost:([^,]+)", 1, RawData),
+         country = extract(@"country:([^,]+)", 1, RawData)
+| where destination != "samplehost"
+| where sourcehost != ""
+| summarize event_count=count() by timestamp, label, country, state, sourcehost, username, destination, longitude, latitude
+
 <img src="pictures/Azurecustomquery.png" alt="Image 2" width="600" style="display:inline-block; margin-right: 100px;">
+
+It might take up to 40 minutes before it shows any data. Be patient.
 
    
 
@@ -71,10 +94,14 @@ Creating custom logs in the Log Analytic Workspace is the next step:
 
 Now, it's time to set up our SIEM:
 
-1. Access Microsoft Sentinel and create a new workbook.
-2. Add a query matching the one used in the custom logs.
-3. Visualize the data on a map using specific settings as illustrated.
-4. Save your configuration.
+1. Access Microsoft Sentinel and click create.
+2. Add the workspace you created earlier
+3. Click on workbooks and Add a workbook.
+4. Click on edit and remove the sample diagrams.
+5. Click on add, and then add query.
+6. Add a query matching the one used in the custom logs.
+7. Visualize the data on a map using specific settings as illustrated.
+8. Save your configuration.
 
 <img src="pictures/azuremapfailed.png" alt="Image 2" width="1000" style="display:inline-block; margin-right: 100px;">
 
