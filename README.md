@@ -50,6 +50,7 @@ Let's delve into data ingestion using PowerShell:
 3. This script will notify you in the PowerShell command line of any attempted connections to your vulnerable VM.
 
 <img src="pictures/Azuregeoipio.png" alt="Image 2" width="600" style="display:inline-block; margin-right: 100px;">
+<img src="pictures/AzureAPI.png" alt="Image 2" width="600" style="display:inline-block; margin-right: 100px;">
 
 ## Creation of Custom Logs
 
@@ -60,9 +61,9 @@ Creating custom logs in the Log Analytic Workspace is the next step:
 3. In the same menu, click "Tables" and then "Create," establishing a new custom log (MMA-based).
 4. Configure the log to collect data from your VM by copying the contents of the "failed_rdp.log" file from your vulnerable VM to your local computer. The path to this file on your vulnerable VM is: C:\ProgramData\failed_rdp.log
 
-<img src="pictures/Azure Azuregeoipio.png" alt="Image 2" width="600" style="display:inline-block; margin-right: 100px;">
-
+<img src="pictures/AzureCustomMMA.png" alt="Image 2" width="600" style="display:inline-block; margin-right: 100px;">
 <img src="pictures/Azureccollectionpath.png" alt="Image 2" width="600" style="display:inline-block; margin-right: 100px;">
+<img src="pictures/Azurecustomquery.png" alt="Image 2" width="600" style="display:inline-block; margin-right: 100px;">
 
    
 
