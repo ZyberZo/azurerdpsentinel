@@ -8,6 +8,8 @@ Welcome to a comprehensive guide on Azure RDP Failed Login Map Monitoring. In th
 ## Creating Your Azure Account
 
 Before diving into the technical details, ensure you have an Azure account. If you don't have one, you can easily sign up for a free account, which comes with a generous $200 credit for exploration.
+![Example Image](pictures/L1.png)
+
 
 ## Building the Vulnerable Virtual Machine
 
@@ -16,12 +18,18 @@ The first step is to create a virtual machine made intentionally vulnerable by t
 1. Create an Azure Virtual Machine with a Windows 10 operating system, setting up the administrator account and specifying a resource group for streamlined management.
 2. During Network configuration, create a custom firewall rule to intentionally make the VM vulnerable.
 
+<img src="pictures/Azure Create VM.png" alt="Image 1" width="450" style="display:inline-block; margin-right: 20px;">
+<img src="pictures/AzureFirewallAllow.png" alt="Image 2" width="400" style="display:inline-block; margin-right: 100px;">
+
 ## Setting Up Log Analytics
 
 To effectively gather and analyze data from your VM, you'll need a log analytic workspace. Here's how to set it up:
 
 1. Create a log analytic workspace and ensure it's in the same resource group as your VM.
 2. Configure data collection within Microsoft Defender for Cloud, selecting your log analytic workspace and enabling "Servers" under Environment settings.
+
+<img src="pictures/Azure Create analytic workspace.png" alt="Image 1" width="450" style="display:inline-block; margin-right: 20px;">
+<img src="pictures/Azure Settings defender plan.png" alt="Image 2" width="900" style="display:inline-block; margin-right: 100px;">
 
 ## Configuring the Vulnerable VM
 
