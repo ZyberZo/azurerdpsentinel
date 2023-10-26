@@ -38,7 +38,7 @@ To effectively gather and analyze data from your VM, you'll need a log analytic 
 
 Return to the vulnerable VM and connect to it with the public IP address using RDP. Please note that Remote Desktop is not available on Windows 11 Home; it's a feature exclusive to Windows 11 Pro. To access your Azure VM from a Windows 11 Home system, you can use virtualization software such as VirtualBox or VMware Workstation to set up a Windows 10 virtual machine and connect to your Azure VM through it.
 
-Ensure the firewall is turned off for the Domain Profile, Private Profile, and Public Profile.(Press start and write “wf.msc” to get to the firewall settings)
+Ensure the firewall is turned off for the Domain Profile, Private Profile, and Public Profile.(Hit the windows key and write “wf.msc” to get to the firewall settings)
 
 <img src="pictures/Azure VM IP adress.png" alt="Image 2" width="800" style="display:inline-block; margin-right: 100px;">
 <img src="pictures/Azure vuln vm firewall.png" alt="Image 2" width="600" style="display:inline-block; margin-right: 100px;">
