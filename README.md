@@ -90,7 +90,7 @@ FAILED_RDP_WITH_GEO_CL
 
 <img src="pictures/Azurecustomquery.png" alt="Image 2" width="600" style="display:inline-block; margin-right: 100px;">
 
-It might take up to 40 minutes before it shows any data. Be patient.
+It might take up to 40 minutes before it shows any data. 
 
    
 
